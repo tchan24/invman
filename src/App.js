@@ -1,16 +1,22 @@
+import React from 'react';
+import { 
+  BrowserRouter as Router, 
+  Routes, 
+  Route 
+} from 'react-router-dom';
 import HomePage from './HomePage';
 import StockPage from './StockPage';
 import EmployeePage from './EmployeePage';
 
-import './App.css';
-
 function App() {
   return (
-    <div className="App">
-      <HomePage />
-      <StockPage />
-      <EmployeePage />
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' exact element={<HomePage/>} />
+        <Route path='/stock/:id' element={<StockPage/>} />
+        <Route path='/employees' element={<EmployeePage/>} />
+      </Routes>
+    </Router>
   );
 }
 

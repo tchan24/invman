@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function EmployeePage() {
+  const [employees, setEmployees] = useState([
+    {id: 1, name: 'Employee 1', email: 'email1@example.com', number: '1234567890', location: 'Office 1'},
+    {id: 2, name: 'Employee 2', email: 'email2@example.com', number: '2345678901', location: 'Office 2'},
+    // More employees here...
+  ]);
+
   return (
     <div>
       <nav>
@@ -24,7 +30,15 @@ function EmployeePage() {
             </tr>
           </thead>
           <tbody>
-            // Data to be populated here
+            {employees.map((employee) => (
+              <tr key={employee.id}>
+                <td>{employee.name}</td>
+                <td>{employee.id}</td>
+                <td>{employee.email}</td>
+                <td>{employee.number}</td>
+                <td>{employee.location}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
