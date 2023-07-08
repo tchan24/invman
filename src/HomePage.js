@@ -39,6 +39,7 @@ function HomePage() {
                 <td><Link to={`/stock/${product.id}`}>{product.holding}</Link></td>
                 <td><Link to={`/stock/${product.id}`}>{product.incoming}</Link></td>
                 <td><Link to={`/stock/${product.id}`}>{product.virtual}</Link></td>
+                
               </tr>
             ))}
           </tbody>

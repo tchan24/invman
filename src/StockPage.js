@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 function StockPage() {
   let { id } = useParams();
+  //let location = useLocation();
+  //let stockType = location.state.stockType;
+  //let filteredAssets = product.assets.filter(asset => asset.stockType === stockType);
+
   const [product, setProduct] = useState({id: id, name: 'Product ' + id, assets: [
     {assetId: id + '_1', location: 'Location 1', employee: 'Employee 1', employeeId: '1', email: 'email@example.com'},
     {assetId: id + '_2', location: 'Location 2', employee: 'Employee 2', employeeId: '2', email: 'email@example.com'},
