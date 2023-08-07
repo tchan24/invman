@@ -8,8 +8,10 @@ function StockPage() {
   //let filteredAssets = product.assets.filter(asset => asset.stockType === stockType);
 
   const [product, setProduct] = useState({id: id, name: 'Product ' + id, assets: [
-    {assetId: id + '_1', location: 'Location 1', employee: 'Employee 1', employeeId: '1', email: 'email@example.com'},
-    {assetId: id + '_2', location: 'Location 2', employee: 'Employee 2', employeeId: '2', email: 'email@example.com'},
+    {assetId: id + '_1', location: 'Location 1', employee: 'Employee 1', employeeId: '1', email: 'email1@example.com'},
+    {assetId: id + '_2', location: 'Location 2', employee: 'Employee 2', employeeId: '2', email: 'email2@example.com'},
+    {assetId: id + '_3', location: 'Location 3', employee: 'Employee 3', employeeId: '3', email: 'email3@example.com'},
+    {assetId: id + '_4', location: 'Location 4', employee: 'Employee 4', employeeId: '4', email: 'email4@example.com'},
     // More assets here...
   ]});
 
