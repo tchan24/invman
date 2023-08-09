@@ -1,58 +1,58 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function HomePage() {
-  const [products, setProducts] = useState([
-    {id: 1, name: 'Product 1', total: 100, holding: 50, incoming: 25, virtual: 75},
-    {id: 2, name: 'Product 2', total: 200, holding: 100, incoming: 50, virtual: 150},
-    {id: 3, name: 'Product 3', total: 300, holding: 150, incoming: 75, virtual: 225},
-    {id: 4, name: 'Product 4', total: 400, holding: 200, incoming: 100, virtual: 300},
-    {id: 5, name: 'Product 5', total: 500, holding: 250, incoming: 125, virtual: 375},
-    {id: 6, name: 'Product 6', total: 600, holding: 300, incoming: 150, virtual: 450},
-    // More products here...
-  ]);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/api/products')
+      .then(response => {
+        setProducts(response.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div>
-      <nav>
-        <button>Toggle Sidebar</button>
-        // Other navigation items
-      </nav>
-      <div id="sidebar">
-        // Sidebar buttons
-      </div>
-      <div id="content">
-        <h2>Products</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Product/Material ID</th>
-              <th>Product Name</th>
-              <th>Total Stock</th>
-              <th>Holding Stock</th>
-              <th>Incoming Stock</th>
-              <th>Virtual Stock</th>
+      <h1>Products</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Product/Material ID</th>
+            <th>Product Name</th>
+            <th>Total Stock</th>
+            <th>Holding Stock</th>
+            <th>Incoming Stock</th>
+            <th>Virtual Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map(product => (
+            <tr key={product.product_id}>
+              <td>{product.product_id}</td>
+              <td>{product.product_name}</td>
+              <td>{product.total_stock}</td>
+              <td>{product.holding_stock}</td>
+              <td>{product.incoming_stock}</td>
+              <td>{product.virtual_stock}</td>
             </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product.id}>
-                <td>{product.id}</td>
-                <td>{product.name}</td>
-                {/* <td><Link to={`/stock/${product.id}`}>{product.total}</Link></td>
-                <td><Link to={`/stock/${product.id}`}>{product.holding}</Link></td>
-                <td><Link to={`/stock/${product.id}`}>{product.incoming}</Link></td>
-                <td><Link to={`/stock/${product.id}`}>{product.virtual}</Link></td> */}
-                <td><Link to={{pathname: `/stock/${product.id}`, state: {stockType: 'total'}}}>{product.total}</Link></td>
-                <td><Link to={{pathname: `/stock/${product.id}`, state: {stockType: 'holding'}}}>{product.holding}</Link></td>
-                <td><Link to={{pathname: `/stock/${product.id}`, state: {stockType: 'incoming'}}}>{product.incoming}</Link></td>
-                <td><Link to={{pathname: `/stock/${product.id}`, state: {stockType: 'virtual'}}}>{product.virtual}</Link></td>
-
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
