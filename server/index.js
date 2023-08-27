@@ -4,6 +4,10 @@ const db = require('./db');
 const app = express();
 const port = 3001;
 
+const cors = require('cors');
+app.use(cors());
+
+
 app.get('/api/products', (req, res) => {
   db.any('SELECT * FROM Products')
     .then(data => res.json(data))
