@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 
+/*
 function StockPage() {
   let { id } = useParams();
   //let location = useLocation();
@@ -49,6 +50,22 @@ function StockPage() {
           </tbody>
         </table>
       </div>
+    </div>
+  );
+}
+*/
+
+
+function StockPage() {
+  const { id, type } = useParams(); // 'type' will be either 'total', 'holding', 'incoming', or 'virtual'
+
+  // Use the type to make a specific API call or filter your data
+  // For now, just displaying it:
+  
+  return (
+    <div>
+      <h1>Stock Page for Product ID: {id}</h1>
+      <p>Stock Type: {type}</p>
     </div>
   );
 }

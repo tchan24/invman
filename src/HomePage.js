@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 function HomePage() {
   const [products, setProducts] = useState([]);
@@ -28,6 +30,16 @@ function HomePage() {
 
   return (
     <div>
+      <nav>
+        <button>Toggle Sidebar</button>
+        {/* Other navigation items */}
+      </nav>
+      <div id="sidebar">
+        <button>Home</button>
+        <button>Products</button>
+        <button>Stock</button>
+        <button>Employees</button>
+      </div>
       <h1>Products</h1>
       <table>
         <thead>
@@ -45,10 +57,10 @@ function HomePage() {
             <tr key={product.product_id}>
               <td>{product.product_id}</td>
               <td>{product.product_name}</td>
-              <td>{product.total_stock}</td>
-              <td>{product.holding_stock}</td>
-              <td>{product.incoming_stock}</td>
-              <td>{product.virtual_stock}</td>
+              <td><Link to={`/stock/${product.product_id}/total`}>{product.total_stock}</Link></td>
+              <td><Link to={`/stock/${product.product_id}/holding`}>{product.holding_stock}</Link></td>
+              <td><Link to={`/stock/${product.product_id}/incoming`}>{product.incoming_stock}</Link></td>
+              <td><Link to={`/stock/${product.product_id}/virtual`}>{product.virtual_stock}</Link></td>
             </tr>
           ))}
         </tbody>
