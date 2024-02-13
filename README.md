@@ -2,6 +2,9 @@
 <td><Link to={{pathname: `/stock/${product.id}`, state: {stockType: 'holding'}}}>{product.holding}</Link></td>
 <td><Link to={{pathname: `/stock/${product.id}`, state: {stockType: 'incoming'}}}>{product.incoming}</Link></td>
 <td><Link to={{pathname: `/stock/${product.id}`, state: {stockType: 'virtual'}}}>{product.virtual}</Link></td>
+
+rough draft of inventory management app
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
